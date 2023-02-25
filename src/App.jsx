@@ -5,6 +5,7 @@ import { Component } from 'react';
 import { searchImages } from './shared/services/gallery-api';
 import { FidgetSpinner } from 'react-loader-spinner';
 import Modal from 'shared/Modal/Modal';
+import ImageDetails from 'modules/ImageGallery/ImageDetails/ImageDetails';
 
 import './shared/styles/styles.css';
 
@@ -16,6 +17,10 @@ export class App extends Component {
     page: 1,
     error: null,
     showModal: false,
+    imageDetails: null,
+    largeImageURL: '',
+        tags: '',
+
   };
 
   // componentDidMount() {
@@ -52,13 +57,31 @@ export class App extends Component {
     this.setState(({ page }) => ({ page: page + 1 }));
   };
 
+  showImage = ({ largeImageURL, tags }) => {
+    this.setState({
+      imageDetails: {
+        largeImageURL,
+        tags,
+      },
+      showModal: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      showModal: false,
+      imageDetails: null,
+    })
+  }
+
+
   render() {
-    const { items, loading, error } = this.state;
-    const { onSearchImages, loadMore } = this;
+    const { items, loading, error, showModal, largeImageURL, tags, imageDetails } = this.state;
+    const { onSearchImages, loadMore, showImage, closeModal } = this;
     return (
       <>
         <Searchbar onSubmit={onSearchImages} />
-        <ImageGallery items={items} />
+        <ImageGallery items={items} showImage={showImage} />
         {error && <p className={StyleSheet.errorMessage}>{error}</p>}
         {loading && (
           <FidgetSpinner
@@ -73,7 +96,11 @@ export class App extends Component {
           />
         )}
         {Boolean(items.length) && <Button loadMore={loadMore}></Button>}
-        <Modal></Modal>
+        {showModal && (
+          <Modal close={closeModal}>
+            <ImageDetails {...imageDetails} ></ImageDetails>
+          </Modal>
+        )}
       </>
     );
   }
