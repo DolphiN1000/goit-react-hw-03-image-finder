@@ -47,7 +47,6 @@ export class App extends Component {
       this.setState({ error: error.message });
     } finally {
       this.setState({ loading: false });
-      console.log(this.items)
     }
   }
 
@@ -77,7 +76,8 @@ export class App extends Component {
   };
 
   render() {
-    const { items, loading, error, showModal, imageDetails, page, totalPage } = this.state;
+    const { items, loading, error, showModal, imageDetails, page, totalPage } =
+      this.state;
     const { onSearchImages, loadMore, showImage, closeModal } = this;
     return (
       <>
@@ -96,7 +96,7 @@ export class App extends Component {
             backgroundColor="#F4442E"
           />
         )}
-        {Boolean(((page <= totalPage) && items.length)) && (
+        {Boolean(page <= totalPage && items.length) && (
           <Button loadMore={loadMore}></Button>
         )}
         {showModal && (

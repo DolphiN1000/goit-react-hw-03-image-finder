@@ -18,7 +18,7 @@ const ImageGallery = ({ items, showImage }) => {
     );
   });
 
-  return <ul className='ImageGallery'>{elements}</ul>;
+  return <ul className='imageGallery'>{elements}</ul>;
 };
 
 export default ImageGallery;
