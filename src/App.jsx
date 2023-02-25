@@ -15,12 +15,12 @@ export class App extends Component {
     items: [],
     loading: false,
     page: 1,
+    totalPage: 1,
     error: null,
     showModal: false,
     imageDetails: null,
     largeImageURL: '',
-        tags: '',
-
+    tags: '',
   };
 
   // componentDidMount() {
@@ -41,11 +41,13 @@ export class App extends Component {
       const data = await searchImages(search, page);
       this.setState(({ items }) => ({
         items: [...items, ...data.hits],
+        totalPage: data.totalHits / 12,
       }));
     } catch (error) {
       this.setState({ error: error.message });
     } finally {
       this.setState({ loading: false });
+      console.log(this.items)
     }
   }
 
@@ -71,12 +73,11 @@ export class App extends Component {
     this.setState({
       showModal: false,
       imageDetails: null,
-    })
-  }
-
+    });
+  };
 
   render() {
-    const { items, loading, error, showModal, imageDetails } = this.state;
+    const { items, loading, error, showModal, imageDetails, page, totalPage } = this.state;
     const { onSearchImages, loadMore, showImage, closeModal } = this;
     return (
       <>
@@ -95,10 +96,12 @@ export class App extends Component {
             backgroundColor="#F4442E"
           />
         )}
-        {Boolean(items.length) && <Button loadMore={loadMore}></Button>}
+        {Boolean(((page <= totalPage) && items.length)) && (
+          <Button loadMore={loadMore}></Button>
+        )}
         {showModal && (
           <Modal close={closeModal}>
-            <ImageDetails {...imageDetails} ></ImageDetails>
+            <ImageDetails {...imageDetails}></ImageDetails>
           </Modal>
         )}
       </>
