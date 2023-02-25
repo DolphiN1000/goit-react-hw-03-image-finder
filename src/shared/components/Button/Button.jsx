@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import styles from './button.module.scss';
 
-const Button = () => {
+const Button = ({loadMore}) => {
     return(
-        <button className={styles.button}>Load more</button>
+        <button className={styles.button} onClick={loadMore}>Load more</button>
     )
 }
 
