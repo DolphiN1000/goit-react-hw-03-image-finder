@@ -76,7 +76,7 @@ export class App extends Component {
 
 
   render() {
-    const { items, loading, error, showModal, largeImageURL, tags, imageDetails } = this.state;
+    const { items, loading, error, showModal, imageDetails } = this.state;
     const { onSearchImages, loadMore, showImage, closeModal } = this;
     return (
       <>
