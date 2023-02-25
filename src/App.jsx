@@ -84,23 +84,24 @@ export class App extends Component {
         <Searchbar onSubmit={onSearchImages} />
         <ImageGallery items={items} showImage={showImage} />
         {error && <p className={StyleSheet.errorMessage}>{error}</p>}
-        {loading && (
-          <FidgetSpinner
-            visible={true}
-            height="200"
-            width="200"
-            ariaLabel="dna-loading"
-            wrapperStyle={{}}
-            wrapperClass="dna-wrapper"
-            ballColors={['#ff0000', '#00ff00', '#0000ff']}
-            backgroundColor="#F4442E"
-          />
-        )}
+
         {Boolean(page <= totalPage && items.length) && (
           <Button loadMore={loadMore}></Button>
         )}
-        {showModal && (
-          <Modal close={closeModal}>
+        {(showModal || loading) && (
+          <Modal close={closeModal} showModal={showModal}>
+            {loading && (
+              <FidgetSpinner
+                visible={true}
+                height="200"
+                width="200"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                ballColors={['#ff0000', '#00ff00', '#0000ff']}
+                backgroundColor="#F4442E"
+              />
+            )}
             <ImageDetails {...imageDetails}></ImageDetails>
           </Modal>
         )}
