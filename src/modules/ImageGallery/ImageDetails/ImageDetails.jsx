@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 import styles from './imageDetails.module.scss';
 
@@ -12,6 +12,6 @@ const ImageDetails = ({ largeImageURL, tags }) => {
 export default ImageDetails;
 
 ImageDetails.propTypes = {
-  largeImageURL: PropTypes.string, 
+  largeImageURL: PropTypes.string,
   tags: PropTypes.string,
-}
+};

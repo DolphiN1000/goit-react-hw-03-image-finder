@@ -14,4 +14,4 @@ export default Button;
 
 Button.propTypes = {
   loadMore: PropTypes.func.isRequired,
-}
+};
