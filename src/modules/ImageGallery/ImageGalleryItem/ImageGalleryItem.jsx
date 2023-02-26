@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import styles from './imageGalleryItem.module.scss';
 
@@ -20,3 +20,12 @@ export default ImageGalleryItem;
 ImageGalleryItem.defaultProps = {
   items: [],
 };
+
+ImageGalleryItem.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    webformatURL: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+    tags: PropTypes.string,
+  })),
+  showImage: PropTypes.func.isRequired
+}

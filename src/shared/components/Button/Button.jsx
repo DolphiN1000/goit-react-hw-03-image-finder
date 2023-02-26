@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import styles from './button.module.scss';
 
@@ -11,3 +11,7 @@ const Button = ({ loadMore }) => {
 };
 
 export default Button;
+
+Button.propTypes = {
+  loadMore: PropTypes.func.isRequired,
+}

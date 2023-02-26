@@ -1,9 +1,5 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
-
-// import styles from './imageGallery.module.scss';
-
-// import styles from './imageGallery.module.scss';
 
 const ImageGallery = ({ items, showImage }) => {
   const elements = items.map(({ id, webformatURL, largeImageURL, tags }) => {
@@ -25,4 +21,16 @@ export default ImageGallery;
 
 ImageGallery.defaultProps = {
   items: [],
+};
+
+ImageGallery.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      tags: PropTypes.string,
+    })
+  ),
+  showImage: PropTypes.func.isRequired,
 };
