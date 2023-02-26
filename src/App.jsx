@@ -82,12 +82,10 @@ export class App extends Component {
     return (
       <>
         <Searchbar onSubmit={onSearchImages} />
-        <ImageGallery items={items} showImage={showImage} />
+        {(items.length !== 0) && <ImageGallery items={items} showImage={showImage} />}
         {error && <p className={StyleSheet.errorMessage}>{error}</p>}
 
-        {Boolean(page <= totalPage && items.length) && (
-          <Button loadMore={loadMore}></Button>
-        )}
+        {Boolean(page <= totalPage && items.length && !loading) && (<Button loadMore={loadMore}></Button>)}
         {(showModal || loading) && (
           <Modal close={closeModal} showModal={showModal}>
             {loading && (
