@@ -2,10 +2,12 @@
 
 import styles from './button.module.scss';
 
-const Button = ({loadMore}) => {
-    return(
-        <button className={styles.button} onClick={loadMore}>Load more</button>
-    )
-}
+const Button = ({ loadMore }) => {
+  return (
+    <button className={styles.button} onClick={loadMore}>
+      Load more
+    </button>
+  );
+};
 
 export default Button;

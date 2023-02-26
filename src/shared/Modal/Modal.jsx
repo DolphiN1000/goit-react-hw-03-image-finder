@@ -13,13 +13,15 @@ class Modal extends Component {
   };
   render() {
     const { children, close, showModal } = this.props;
-    const {closeModal} =this;
+    const { closeModal } = this;
     return createPortal(
       <div className={styles.overlay} onClick={closeModal}>
         <div className={styles.modal}>
-          {showModal && (<span className={styles.close} onClick={close}>
-            x
-          </span>)}
+          {showModal && (
+            <span className={styles.close} onClick={close}>
+              x
+            </span>
+          )}
           {children}
         </div>
       </div>,

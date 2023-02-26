@@ -1,4 +1,4 @@
-import styles from './imageDetails.module.scss'
+import styles from './imageDetails.module.scss';
 
 const ImageDetails = ({ id, largeImageURL, tags }) => {
   return (
